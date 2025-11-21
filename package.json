@@ -1,0 +1,34 @@
+{
+  "name": "codealpha_ecommerce_backend",
+  "version": "1.0.0",
+  "description": "This repository contains the modular, production-ready backend API for a modern e-commerce platform, developed for the CodeAlpha Full Stack Development Internship. It provides secure authentication, product management, shopping cart, orders, reviews, and other essential e-commerce functionalities, powered by MongoDB and deployed on Render.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leta-Kasahun/CodeAlpha_Ecommerce_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leta-Kasahun/CodeAlpha_Ecommerce_Backend/issues"
+  },
+  "homepage": "https://github.com/Leta-Kasahun/CodeAlpha_Ecommerce_Backend#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.20.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

@@ -1,0 +1,11 @@
+import express from 'express';
+import registerUser from '../controllers/auth/auth.register.js';
+import verifyOTP from '../controllers/auth/auth.verifyOTP.js';
+import loginUser from '../controllers/auth/auth.login.js';
+import logoutUser from '../controllers/auth/auth.logout.js';
+const router = express.Router();
+router.post('/register', registerUser);
+router.post('/verify-otp', verifyOTP);
+router.post('/login', loginUser);
+router.post('/logout', logoutUser);
+export default router;
