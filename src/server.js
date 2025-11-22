@@ -4,6 +4,7 @@ import cors from 'cors';
 import connectDB from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import errorHandler from './middlewares/errorHandler.js';
+import authResetRoutes from './routes/authResetRoutes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -14,6 +15,7 @@ app.use(express.json());
 connectDB();
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/auth', authResetRoutes);
 // Error handler (must be last)
 app.use(errorHandler);
 

@@ -1,32 +1,27 @@
 import nodemailer from 'nodemailer';
 
-// OTP HTML template
-export const otpTemplate = (otp, name = 'User') => {
-  return `
-    <div style="font-family: Arial, sans-serif; padding: 20px; line-height: 1.5;">
-      <h2 style="color:#1a73e8; margin-bottom: 12px;">
-        Welcome to CA-Ecommerce, ${name} 👋
-      </h2>
+// Very small OTP HTML + text templates (easy to read)
+const otpHtml = (otp, name = 'User') => `
+  <div style="font-family: Arial, sans-serif; padding:20px;">
+    <h3>CA‑Ecommerce — Hello ${name}</h3>
+    <p>Your verification code:</p>
+    <h2 style="letter-spacing:4px; color:#1a73e8;">${otp}</h2>
+    <p>Valid for 10 minutes.</p>
+    <p style="color:#777">CA‑Ecommerce</p>
+  </div>
+`;
 
-      <p style="margin: 6px 0;">Your verification code:</p>
+const otpText = (otp, name = 'User') => `
+Hello ${name},
 
-      <h1 style="color:#1a73e8; font-size: 34px; letter-spacing: 4px; margin: 15px 0;">
-        ${otp}
-      </h1>
+Your CA-Ecommerce verification code: ${otp}
+This code is valid for 10 minutes.
 
-      <p style="margin: 6px 0;">Valid for 10 minutes.</p>
+If you didn't request this, ignore this message.
+`;
 
-      <p style="color:#777; margin-top: 25px;">CA-Ecommerce</p>
-    </div>
-  `;
-};
-
-// Transporter cache
 let transporter = null;
 
-/**
- * Initialize and verify the transporter once. Throws if env or auth invalid.
- */
 const initTransporter = async () => {
   if (transporter) return transporter;
 
@@ -34,42 +29,35 @@ const initTransporter = async () => {
   const pass = process.env.EMAIL_PASS;
 
   if (!user || !pass) {
-    throw new Error('Missing EMAIL_USER or EMAIL_PASS in environment');
+    throw new Error('Missing EMAIL_USER or EMAIL_PASS environment variables');
   }
 
   transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user,
-      pass,
-    },
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: Number(process.env.EMAIL_PORT || 465),
+    secure: process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) === 465 : true,
+    auth: { user, pass },
   });
 
-  // Verify the connection configuration. This will throw if credentials are invalid.
+  // verify will throw if credentials are wrong
   await transporter.verify();
   return transporter;
 };
 
 /**
- * Send OTP email.
- * - email: recipient email
- * - otp: the code (string)
- * - name: recipient name (optional)
+ * sendOTPEmail(email, otp, name, subject)
  */
-const sendOTPEmail = async (email, otp, name = 'User') => {
+const sendOTPEmail = async (email, otp, name = 'User', subject = 'Your CA-Ecommerce Verification Code') => {
   const tx = await initTransporter();
-
-  const mailOptions = {
-    from: `CA-Ecommerce <${process.env.EMAIL_USER}>`,
+  const from = process.env.EMAIL_FROM || process.env.EMAIL_USER;
+  const info = await tx.sendMail({
+    from,
     to: email,
-    subject: 'Your CA-Ecommerce Verification Code',
-    html: otpTemplate(otp, name),
-  };
-
-  const info = await tx.sendMail(mailOptions);
-  return info; // caller can use info.messageId etc.
+    subject,
+    html: otpHtml(otp, name),
+    text: otpText(otp, name),
+  });
+  return info;
 };
 
 export default sendOTPEmail;
