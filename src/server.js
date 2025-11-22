@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes.js';
 import errorHandler from './middlewares/errorHandler.js';
 import authResetRoutes from './routes/authResetRoutes.js';
 import productRoutes from './routes/productRoutes.js';
+import cartRoutes from './routes/cartRoutes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -18,6 +19,7 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/auth', authResetRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
 // Error handler (must be last)
 app.use(errorHandler);
 
