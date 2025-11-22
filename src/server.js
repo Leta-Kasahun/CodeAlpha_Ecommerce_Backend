@@ -8,6 +8,8 @@ import authResetRoutes from './routes/authResetRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
+import ownerRoutes from './routes/ownerRoutes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +24,8 @@ app.use('/api/auth', authResetRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/owners', ownerRoutes);
 // Error handler (must be last)
 app.use(errorHandler);
 
