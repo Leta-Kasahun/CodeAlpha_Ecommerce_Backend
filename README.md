@@ -24,60 +24,74 @@ A complete, production-ready backend API for modern e-commerce platform built fo
 CodeAlpha_Ecommerce_Backend/
 │
 ├── src/
-│ ├── config/
-│ │ ├── db.js
-│ │ └── env.js
-│ │
-│ ├── controllers/
-│ │ ├── auth/
-│ │ ├── product/
-│ │ ├── order/
-│ │ ├── payment/
-│ │ └── user/
-│ │
-│ ├── models/
-│ │ ├── userModel.js
-│ │ ├── productModel.js
-│ │ ├── cartModel.js
-│ │ ├── orderModel.js
-│ │ ├── paymentModel.js
-│ │ └── reviewModel.js
-│ │
-│ ├── routes/
-│ │ ├── authRoutes.js
-│ │ ├── productRoutes.js
-│ │ ├── cartRoutes.js
-│ │ ├── orderRoutes.js
-│ │ ├── paymentRoutes.js
-│ │ ├── reviewRoutes.js
-│ │ ├── searchRoutes.js
-│ │ ├── sortingRoutes.js
-│ │ └── userRoutes.js
-│ │
-│ ├── services/
-│ │ ├── authService.js
-│ │ ├── productService.js
-│ │ ├── cartService.js
-│ │ ├── orderService.js
-│ │ ├── paymentService.js
-│ │ ├── searchService.js
-│ │ └── userService.js
-│ │
-│ ├── middlewares/
-│ │ ├── authMiddleware.js
-│ │ └── errorHandler.js
-│ │
-│ ├── utils/
-│ │ ├── generateToken.js
-│ │ ├── emailService.js
-│ │ └── emailTemplates.js
-│ │
-│ └── server.js
+│   ├── config/
+│   │   ├── db.js
+│   │   └── env.js
+│   │
+│   ├── controllers/
+│   │   ├── auth/
+│   │   │   ├── auth.register.js
+│   │   │   ├── auth.login.js
+│   │   │   ├── auth.logout.js
+│   │   │   └── auth.verifyOTP.js
+│   │   │
+│   │   ├── product/
+│   │   │   ├── productControllers.js
+│   │   │   ├── cartControllers.js
+│   │   │   ├── orderControllers.js
+│   │   │   ├── reviewControllers.js
+│   │   │   └── searchControllers.js
+│   │   │
+│   │   └── users/
+│   │       ├── userProfileControllers.js
+│   │       └── ownerControllers.js
+│   │
+│   ├── models/
+│   │   ├── userModel.js
+│   │   ├── productModel.js
+│   │   ├── cartModel.js
+│   │   ├── orderModel.js
+│   │   ├── paymentModel.js
+│   │   └── reviewModel.js
+│   │
+│   ├── routes/
+│   │   ├── authRoutes.js
+│   │   ├── productRoutes.js
+│   │   ├── cartRoutes.js
+│   │   ├── orderRoutes.js
+│   │   ├── paymentRoutes.js
+│   │   ├── reviewRoutes.js
+│   │   ├── searchRoutes.js
+│   │   ├── sortingRoutes.js
+│   │   ├── orderHistoryRoutes.js
+│   │   └── userProfileRoutes.js
+│   │
+│   ├── services/
+│   │   ├── authService.js
+│   │   ├── productService.js
+│   │   ├── cartService.js
+│   │   ├── orderService.js
+│   │   ├── paymentService.js
+│   │   ├── searchService.js
+│   │   ├── sortingService.js
+│   │   ├── userService.js
+│   │   └── addressService.js
+│   │
+│   ├── middlewares/
+│   │   ├── authMiddleware.js
+│   │   └── errorHandler.js
+│   │
+│   ├── utils/
+│   │   ├── generateToken.js
+│   │   ├── emailService.js
+│   │   └── emailTemplates.js
+│   │
+│   └── server.js
 │
 ├── .env
 ├── package.json
+├── package-lock.json
 └── README.md
-
 ---
 
 ## ⭐ Features
