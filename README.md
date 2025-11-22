@@ -148,11 +148,18 @@ git clone <repository-url>
 cd CodeAlpha_Ecommerce_Backend
 
 npm run dev
-
+<br>
 🌐 Deployment
 The API is deployed on Render with automatic deployments from GitHub. Environment variables are configured in the Render dashboard for secure production deployment.
+<br>
+📞 Support
+For issues or questions regarding this CodeAlpha internship project:
 
+Email: services@codealpha.tech
+
+Website: www.codealpha.tech
+<br>
 📄 License
 This project is developed as part of the CodeAlpha Full Stack Development Internship program.
-
+<br>
 Built with ❤️ for CodeAlpha Full Stack Development Internship
