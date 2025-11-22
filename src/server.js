@@ -13,6 +13,8 @@ import ownerRoutes from './routes/ownerRoutes.js';
 import searchRoutes from './routes/searchRoutes.js';
 import sortingRoutes from './routes/sortingRoutes.js';
 import paymentRoutes from './routes/paymentRoutes.js';
+import userProfileRoutes from './routes/userProfileRoutes.js';
+import orderHistoryRoutes from './routes/orderHistoryRoutes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,6 +34,8 @@ app.use('/api/owners', ownerRoutes);
 app.use('/api/search', searchRoutes);
 app.use('/api/sort', sortingRoutes);
 app.use('/api/payments', paymentRoutes);
+app.use('/api/user-profile', userProfileRoutes);
+app.use('/api/order-history', orderHistoryRoutes);
 // Error handler (must be last)
 app.use(errorHandler);
 

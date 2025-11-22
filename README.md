@@ -1,70 +1,158 @@
-# CodeAlpha E-Commerce Backend
+# 🛍️ CodeAlpha E-Commerce Backend
 
-This repository contains the modular, production-ready backend API for a modern e-commerce platform, developed for the CodeAlpha Full Stack Development Internship. It provides secure authentication, product management, shopping cart, orders, reviews, and other essential e-commerce functionalities, powered by MongoDB and deployed on Render.
+A complete, production-ready backend API for modern e-commerce platform built for **CodeAlpha Full Stack Development Internship**.
 
-## Technologies
-- Node.js / Express.js
-- MongoDB Atlas (Mongoose)
-- Render (Deployment)
-- Postman (API Testing)
-- GitHub (Version Control)
+---
 
-## Features
-- User authentication (register, login, logout)
-- Product CRUD operations
-- Shopping cart management
-- Order processing
+## 🚀 Live Deployment
+**Base URL:** `https://ca-ecommerce-api.onrender.com`
+
+---
+
+## 🛠️ Tech Stack
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB Atlas with Mongoose
+- **Authentication:** JWT, Bcrypt
+- **Email Service:** Nodemailer
+- **Deployment:** Render
+- **Testing:** Postman/Thunder Client
+
+---
+
+## 📁 Project Structure
+
+
+---
+
+## ⭐ Features
+
+### 🔐 Authentication System
+- User registration with email OTP verification
+- Secure login/logout with JWT tokens
+- Password reset functionality
+- Email verification for account activation
+
+### 👤 User Management
+- User profile management
+- Address information storage
+- Order history with advanced filtering
+- Role-based access (customer/seller)
+
+### 📦 Product Management
+- Complete CRUD operations for products
+- Product categorization and tagging
+- Inventory management
+- Image support with URL arrays
+
+### 🔍 Search & Discovery
+- Advanced product search with filters
+- Real-time search suggestions
+- Multiple sorting options (price, date, rating)
+- Popular search categories
+
+### 🛒 Shopping Cart
+- Add/remove items from cart
+- Quantity management
+- Cart persistence per user session
+- Automatic cart clearing after orders
+
+### 📋 Order System
+- Order creation from cart items
+- Order status tracking (processing → shipped → completed)
+- Order history with advanced filtering
+- Shipping address management
+
+### 💳 Payment System
+- Payment simulation for orders
+- Multiple payment methods support
+- Payment status tracking
+- Transaction history
+
+### ⭐ Reviews & Ratings
 - Product reviews and ratings
-- Wishlist management
-- Coupons / discount codes
-- Categories and tags
-- Admin operations
-- Payment gateway integration (placeholder)
+- Review management (create, update, delete)
+- Product rating calculations
+- User review history
 
-## Modular Folder Structure
+### 🏪 Seller Marketplace
+- User upgrade to seller role
+- Shop profile management
+- Product management for sellers
+- Order management for shop owners
 
-CodeAlpha_Ecommerce_Backend/
-│
-├── src/
-│   ├── config/
-│   │   ├── db.js
-│   │   └── env.js
-│   │
-│   ├── controllers/
-│   │   ├── authController.js
-│   │   ├── productController.js
-│   │   ├── cartController.js
-│   │   ├── orderController.js
-│   │   ├── reviewController.js
-│   │   └── userController.js
-│   │
-│   ├── models/
-│   │   ├── userModel.js
-│   │   ├── productModel.js
-│   │   ├── cartModel.js
-│   │   ├── orderModel.js
-│   │   └── reviewModel.js
-│   │
-│   ├── routes/
-│   │   ├── authRoutes.js
-│   │   ├── productRoutes.js
-│   │   ├── cartRoutes.js
-│   │   ├── orderRoutes.js
-│   │   ├── reviewRoutes.js
-│   │   └── userRoutes.js
-│   │
-│   ├── middlewares/
-│   │   ├── authMiddleware.js
-│   │   └── errorHandler.js
-│   │
-│   ├── utils/
-│   │   ├── generateToken.js
-│   │   └── formatResponse.js
-│   │
-│   └── server.js
-│
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── README.md
-└── .env
+---
+
+## 🚀 API Endpoints Overview
+
+### Authentication
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/verify-otp` - Email verification
+- `POST /api/auth/login` - User login
+- `POST /api/auth/logout` - User logout
+
+### User Management
+- `GET /api/user-profile` - Get user profile
+- `PUT /api/user-profile` - Update user profile
+
+### Products
+- `GET /api/products` - Get all products
+- `POST /api/products` - Create product (protected)
+- `GET /api/products/:id` - Get single product
+- `PUT /api/products/:id` - Update product (protected)
+- `DELETE /api/products/:id` - Delete product (protected)
+
+### Search & Sorting
+- `GET /api/search/products` - Search products with filters
+- `GET /api/search/suggestions` - Get search suggestions
+- `GET /api/search/popular` - Get popular searches
+- `GET /api/sort/products` - Sort products
+
+### Cart
+- `GET /api/cart` - Get user cart
+- `POST /api/cart/add` - Add item to cart
+- `PUT /api/cart/update/:id` - Update cart item
+- `DELETE /api/cart/remove/:id` - Remove from cart
+- `DELETE /api/cart/clear` - Clear entire cart
+
+### Orders
+- `POST /api/orders` - Create order from cart
+- `GET /api/orders` - Get user orders
+- `GET /api/orders/:id` - Get single order
+- `PUT /api/orders/:id/status` - Update order status
+- `GET /api/order-history` - Get order history with filters
+
+### Payments
+- `POST /api/payments` - Create payment for order
+- `PUT /api/payments/:id/process` - Process payment
+- `GET /api/payments/history` - Payment history
+- `GET /api/payments/order/:id` - Get payment by order
+
+### Reviews
+- `POST /api/reviews` - Create review
+- `GET /api/reviews/product/:id` - Get product reviews
+- `PUT /api/reviews/:id` - Update review
+- `DELETE /api/reviews/:id` - Delete review
+
+### Seller Features
+- `POST /api/owners/upgrade` - Upgrade to seller
+- `GET /api/owners/profile` - Get seller profile
+- `PUT /api/owners/profile` - Update seller profile
+
+---
+
+## 🔧 Installation & Setup
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd CodeAlpha_Ecommerce_Backend
+
+npm run dev
+
+🌐 Deployment
+The API is deployed on Render with automatic deployments from GitHub. Environment variables are configured in the Render dashboard for secure production deployment.
+
+📄 License
+This project is developed as part of the CodeAlpha Full Stack Development Internship program.
+
+Built with ❤️ for CodeAlpha Full Stack Development Internship
