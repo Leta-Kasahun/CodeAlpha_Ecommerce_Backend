@@ -20,7 +20,7 @@ A complete, production-ready backend API for modern e-commerce platform built fo
 ---
 
 ## 📁 Project Structure
----
+```bash
 CodeAlpha_Ecommerce_Backend/
 │
 ├── src/
@@ -92,6 +92,8 @@ CodeAlpha_Ecommerce_Backend/
 ├── package.json
 ├── package-lock.json
 └── README.md
+```
+
 ---
 
 ## ⭐ Features
