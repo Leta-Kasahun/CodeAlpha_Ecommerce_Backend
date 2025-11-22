@@ -1,28 +1,31 @@
-# 🛍️ CodeAlpha E-Commerce Backend
+🛍️ CodeAlpha E-Commerce Backend
+Complete backend API for modern e-commerce platform. Built for CodeAlpha Full Stack Development Internship.
 
-Complete backend API for modern e-commerce platform. Built for **CodeAlpha Full Stack Development Internship**.
+🚀 Live API
+Base URL: https://ca-ecommerce-api.onrender.com
 
-## 🚀 Live API
-**Base URL:** `https://ca-ecommerce-api.onrender.com`
+🛠️ Tech Stack
+Backend: Node.js, Express.js
 
-## 🛠️ Tech Stack
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB Atlas
-- **Auth:** JWT, Bcrypt
-- **Email:** Nodemailer
-- **Deployment:** Render
+Database: MongoDB Atlas
 
-## ✅ Completed Systems
+Auth: JWT, Bcrypt
 
-### 🔐 AUTHENTICATION SYSTEM
-**Purpose:** Secure user registration and login with email verification
+Email: Nodemailer
 
-**Test Endpoints:**
-```http
-POST /api/auth/register
-POST /api/auth/verify-otp  
-POST /api/auth/login
-POST /api/auth/logout
+Deployment: Render
+
+✅ Completed Systems
+🔐 AUTHENTICATION SYSTEM
+Purpose: Secure user registration and login with email verification
+
+Test Endpoints:
+
+http
+POST https://ca-ecommerce-api.onrender.com/api/auth/register
+POST https://ca-ecommerce-api.onrender.com/api/auth/verify-otp  
+POST https://ca-ecommerce-api.onrender.com/api/auth/login
+POST https://ca-ecommerce-api.onrender.com/api/auth/logout
 Testing Steps:
 
 Register User
@@ -56,11 +59,11 @@ Purpose: Create, view, update, and delete products
 Test Endpoints:
 
 http
-GET    /api/products           # List all products
-GET    /api/products/:id       # Get single product
-POST   /api/products           # Create product (Auth required)
-PUT    /api/products/:id       # Update product (Auth required)
-DELETE /api/products/:id       # Delete product (Auth required)
+GET    https://ca-ecommerce-api.onrender.com/api/products
+GET    https://ca-ecommerce-api.onrender.com/api/products/:id
+POST   https://ca-ecommerce-api.onrender.com/api/products
+PUT    https://ca-ecommerce-api.onrender.com/api/products/:id
+DELETE https://ca-ecommerce-api.onrender.com/api/products/:id
 Testing Steps:
 
 Create Product (Use JWT token from login)
@@ -88,11 +91,11 @@ Purpose: Add products to cart and manage quantities
 Test Endpoints:
 
 http
-GET    /api/cart                 # Get user cart
-POST   /api/cart/add             # Add item to cart
-PUT    /api/cart/update/:id      # Update quantity
-DELETE /api/cart/remove/:id      # Remove item
-DELETE /api/cart/clear           # Clear cart
+GET    https://ca-ecommerce-api.onrender.com/api/cart
+POST   https://ca-ecommerce-api.onrender.com/api/cart/add
+PUT    https://ca-ecommerce-api.onrender.com/api/cart/update/:productId
+DELETE https://ca-ecommerce-api.onrender.com/api/cart/remove/:productId
+DELETE https://ca-ecommerce-api.onrender.com/api/cart/clear
 Testing Steps:
 
 Add to Cart
@@ -116,10 +119,10 @@ Purpose: Create orders from cart and track status
 Test Endpoints:
 
 http
-POST /api/orders           # Create order from cart
-GET  /api/orders           # Get user orders
-GET  /api/orders/:id       # Get single order
-PUT  /api/orders/:id/status # Update order status
+POST https://ca-ecommerce-api.onrender.com/api/orders
+GET  https://ca-ecommerce-api.onrender.com/api/orders
+GET  https://ca-ecommerce-api.onrender.com/api/orders/:id
+PUT  https://ca-ecommerce-api.onrender.com/api/orders/:id/status
 Testing Steps:
 
 Ensure cart has items (from cart testing)
@@ -137,12 +140,66 @@ json
 }
 View Orders - Check order appears in history
 
-Update Status (Admin feature)
+Update Status
 
 json
 {
   "status": "shipped"
 }
+⭐ REVIEWS SYSTEM
+Purpose: Add product reviews and ratings
+
+Test Endpoints:
+
+http
+GET    https://ca-ecommerce-api.onrender.com/api/reviews/product/:productId
+GET    https://ca-ecommerce-api.onrender.com/api/reviews/:id
+POST   https://ca-ecommerce-api.onrender.com/api/reviews
+PUT    https://ca-ecommerce-api.onrender.com/api/reviews/:id
+DELETE https://ca-ecommerce-api.onrender.com/api/reviews/:id
+Testing Steps:
+
+Create Review
+
+json
+{
+  "product": "product_id_here",
+  "rating": 5,
+  "comment": "Excellent product quality!"
+}
+Get Product Reviews - View all reviews for a product
+
+Update Review - Modify rating or comment
+
+Delete Review - Remove review
+
+👑 OWNER UPGRADE SYSTEM
+Purpose: Upgrade user to seller role with shop profile
+
+Test Endpoints:
+
+http
+POST https://ca-ecommerce-api.onrender.com/api/owners/upgrade
+GET  https://ca-ecommerce-api.onrender.com/api/owners/profile
+PUT  https://ca-ecommerce-api.onrender.com/api/owners/profile
+Testing Steps:
+
+Upgrade to Owner
+
+json
+{
+  "shopName": "My Tech Store",
+  "phoneForOrders": "+251911223344",
+  "shopAddress": {
+    "city": "Addis Ababa",
+    "postalCode": "1000",
+    "country": "Ethiopia"
+  }
+}
+Get Owner Profile - View shop details
+
+Update Owner Profile - Modify shop information
+
 🧪 Complete Testing Flow
 Step 1: User Registration & Login
 Register new user → Get OTP from console
@@ -158,16 +215,12 @@ List all products → Verify creation
 
 Update product details → Confirm changes
 
-Delete product → Verify removal
-
 Step 3: Shopping Cart
 Add product to cart → Check cart contents
 
 Update item quantity → Verify calculation
 
 Remove items → Confirm cart updates
-
-Clear cart → Ensure empty state
 
 Step 4: Order Processing
 Add items to cart first
@@ -176,7 +229,19 @@ Create order → Auto-clear cart
 
 View order history → Confirm order details
 
-Update order status → Track progression
+Step 5: Reviews & Ratings
+Create review for purchased product
+
+View product reviews → See your review
+
+Update/delete review → Manage feedback
+
+Step 6: Owner Upgrade
+Upgrade account to seller role
+
+Create shop profile → Become store owner
+
+Manage shop details → Update information
 
 📋 Test Data Examples
 User Registration:
@@ -199,16 +264,25 @@ json
   "description": "Latest smartphone model",
   "images": ["phone.jpg"]
 }
-Order Creation:
+Review Creation:
 
 json
 {
-  "shippingAddress": {
-    "city": "Your City",
-    "postalCode": "12345",
-    "country": "Your Country"
-  },
-  "paymentMethod": "card"
+  "product": "product_id_here",
+  "rating": 5,
+  "comment": "Excellent product quality and fast delivery!"
+}
+Owner Upgrade:
+
+json
+{
+  "shopName": "Tech Gadgets Hub",
+  "phoneForOrders": "+251911223344",
+  "shopAddress": {
+    "city": "Addis Ababa",
+    "postalCode": "1000",
+    "country": "Ethiopia"
+  }
 }
 ✅ Verification Checklist
 User can register and verify email
@@ -223,6 +297,14 @@ Orders can be created from cart
 
 Order status can be updated
 
+Reviews can be created, read, updated, deleted
+
+User can upgrade to owner role
+
+Owner profile can be managed
+
 All endpoints return proper responses
 
 Built for CodeAlpha Full Stack Development Internship 🚀
+
+Live API: https://ca-ecommerce-api.onrender.com

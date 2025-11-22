@@ -10,6 +10,9 @@ import cartRoutes from './routes/cartRoutes.js';
 import orderRoutes from './routes/orderRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import ownerRoutes from './routes/ownerRoutes.js';
+import searchRoutes from './routes/searchRoutes.js';
+import sortingRoutes from './routes/sortingRoutes.js';
+import paymentRoutes from './routes/paymentRoutes.js';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +29,9 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/owners', ownerRoutes);
+app.use('/api/search', searchRoutes);
+app.use('/api/sort', sortingRoutes);
+app.use('/api/payments', paymentRoutes);
 // Error handler (must be last)
 app.use(errorHandler);
 
