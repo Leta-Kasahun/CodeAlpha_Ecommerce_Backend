@@ -4,8 +4,10 @@ A complete, production-ready backend API for modern e-commerce platform built fo
 
 ---
 
-## 🚀 Live Deployment
-**Base URL:** `https://ca-ecommerce-api.onrender.com`
+### 🚀 Live API  
+**BASE URL:**  
+👉 [https://ca-ecommerce-api.onrender.com](https://ca-ecommerce-api.onrender.com)
+
 
 ---
 
