@@ -22,6 +22,7 @@ A complete, production-ready backend API for modern e-commerce platform built fo
 ---
 
 ## 📁 Project Structure
+<<<<<<< HEAD
 ```bash
 CodeAlpha_Ecommerce_Backend/
 │
@@ -95,6 +96,65 @@ CodeAlpha_Ecommerce_Backend/
 ├── package-lock.json
 └── README.md
 ```
+=======
+---
+CodeAlpha_Ecommerce_Backend/
+│
+├── src/
+│ ├── config/
+│ │ ├── db.js
+│ │ └── env.js
+│ │
+│ ├── controllers/
+│ │ ├── auth/
+│ │ ├── product/
+│ │ ├── order/
+│ │ ├── payment/
+│ │ └── user/
+│ │
+│ ├── models/
+│ │ ├── userModel.js
+│ │ ├── productModel.js
+│ │ ├── cartModel.js
+│ │ ├── orderModel.js
+│ │ ├── paymentModel.js
+│ │ └── reviewModel.js
+│ │
+│ ├── routes/
+│ │ ├── authRoutes.js
+│ │ ├── productRoutes.js
+│ │ ├── cartRoutes.js
+│ │ ├── orderRoutes.js
+│ │ ├── paymentRoutes.js
+│ │ ├── reviewRoutes.js
+│ │ ├── searchRoutes.js
+│ │ ├── sortingRoutes.js
+│ │ └── userRoutes.js
+│ │
+│ ├── services/
+│ │ ├── authService.js
+│ │ ├── productService.js
+│ │ ├── cartService.js
+│ │ ├── orderService.js
+│ │ ├── paymentService.js
+│ │ ├── searchService.js
+│ │ └── userService.js
+│ │
+│ ├── middlewares/
+│ │ ├── authMiddleware.js
+│ │ └── errorHandler.js
+│ │
+│ ├── utils/
+│ │ ├── generateToken.js
+│ │ ├── emailService.js
+│ │ └── emailTemplates.js
+│ │
+│ └── server.js
+│
+├── .env
+├── package.json
+└── README.md
+>>>>>>> 00ed0b6 (corse is done)
 
 ---
 
