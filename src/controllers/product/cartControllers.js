@@ -98,7 +98,7 @@ const removeFromCartController = async (req, res) => {
   }
 };
 
-// Clear cart
+
 const clearCartController = async (req, res) => {
   try {
     const cart = await clearCart(req.user._id);

@@ -36,14 +36,14 @@ const registerUser = async (req, res) => {
       email,
       password,
       otp,
-      otpExpires: new Date(Date.now() + 10 * 60 * 1000) // 10 minutes
+      otpExpires: new Date(Date.now() + 10 * 60 * 1000) 
     });
 
-    // Try to send OTP. If sending fails, remove created user to avoid orphan accounts.
+    
     try {
       await sendOTPEmail(email, user.otp, user.name);
     } catch (sendErr) {
-      // Cleanup created user
+     
       try {
         await User.deleteOne({ _id: user._id });
       } catch (delErr) {

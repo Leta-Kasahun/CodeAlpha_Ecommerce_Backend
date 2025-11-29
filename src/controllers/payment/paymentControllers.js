@@ -5,7 +5,6 @@ import {
   getUserPayments
 } from '../../services/paymentService.js';
 
-// Create payment for order
 const createPaymentController = async (req, res) => {
   try {
     const paymentData = {
@@ -28,7 +27,6 @@ const createPaymentController = async (req, res) => {
   }
 };
 
-// Process payment (simulate success/failure)
 const processPaymentController = async (req, res) => {
   try {
     const { status } = req.body; // 'success' or 'failed'
@@ -73,7 +71,7 @@ const getPaymentByOrderController = async (req, res) => {
   }
 };
 
-// Get user payment history
+
 const getUserPaymentsController = async (req, res) => {
   try {
     const payments = await getUserPayments(req.user._id);

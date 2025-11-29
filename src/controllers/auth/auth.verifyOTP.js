@@ -11,8 +11,6 @@ const verifyOTP = async (req, res) => {
         message: 'Email and OTP are required'
       });
     }
-
-    // Find user matching email and otp and ensure otp hasn't expired
     const user = await User.findOne({
       email,
       otp,

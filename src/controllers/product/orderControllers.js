@@ -5,7 +5,6 @@ import {
   updateOrderStatus
 } from '../../services/orderService.js';
 
-// Create order from cart
 const createOrderController = async (req, res) => {
   try {
     const order = await createOrder(req.user._id, req.body);
@@ -23,7 +22,6 @@ const createOrderController = async (req, res) => {
   }
 };
 
-// Get user orders
 const getOrdersController = async (req, res) => {
   try {
     const orders = await getOrdersByUser(req.user._id);
@@ -41,7 +39,7 @@ const getOrdersController = async (req, res) => {
   }
 };
 
-// Get single order
+
 const getOrderController = async (req, res) => {
   try {
     const order = await getOrderById(req.params.id);
@@ -65,7 +63,7 @@ const getOrderController = async (req, res) => {
   }
 };
 
-// Update order status
+
 const updateOrderStatusController = async (req, res) => {
   try {
     const { status } = req.body;

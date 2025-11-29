@@ -1,3 +1,5 @@
+// orderService: createOrder creates an Order from the user's cart and returns it.
+// Do NOT clear the user's cart here; cart clearing will be done only after payment success.
 import Order from '../models/orderModel.js';
 import Cart from '../models/cartModel.js';
 
@@ -23,12 +25,6 @@ export const createOrder = async (userId, orderData) => {
     totalPrice,
     paymentMethod: orderData.paymentMethod || 'card'
   });
-
-  // Clear cart after order
-  await Cart.findOneAndUpdate(
-    { user: userId },
-    { items: [], total: 0 }
-  );
 
   return await order.populate('orderItems.product');
 };

@@ -27,7 +27,7 @@ const upgradeToOwnerController = async (req, res) => {
   }
 };
 
-// Get owner profile
+
 const getOwnerProfileController = async (req, res) => {
   try {
     const sellerProfile = await getOwnerProfile(req.user._id);

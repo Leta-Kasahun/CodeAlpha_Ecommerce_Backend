@@ -16,7 +16,7 @@ export const verifyResetOTP = async (req, res) => {
     const { email, otp } = req.body;
     const result = await passwordResetService.verifyResetOTP(email, otp);
     if (!result.success) return res.status(result.status || 400).json(result);
-    // send raw resetToken once to client
+    
     return res.status(200).json({ success: true, message: 'OTP verified', resetToken: result.resetToken });
   } catch (err) {
     console.error('verifyResetOTP controller error:', err);

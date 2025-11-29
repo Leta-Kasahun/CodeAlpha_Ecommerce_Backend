@@ -2,22 +2,17 @@ import crypto from 'crypto';
 import User from '../models/userModel.js';
 import sendOTPEmail from '../utils/emailService.js'; // your existing email service
 
-const OTP_TTL_MS = 10 * 60 * 1000; // 10 minutes
-const RESET_TOKEN_TTL_MS = 10 * 60 * 1000; // 10 minutes
+const OTP_TTL_MS = 10 * 60 * 1000; 
+const RESET_TOKEN_TTL_MS = 10 * 60 * 1000; 
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
-/**
- * sendResetOTP(email)
- * - Creates otpReset + expiry and sends OTP to user email.
- * - Returns a generic success message whether user exists or not.
- */
 export async function sendResetOTP(email) {
   if (!email) return { success: false, status: 400, message: 'Email is required' };
 
   const user = await User.findOne({ email });
   if (!user) {
-    // do not reveal existence
+
     return { success: true, message: 'If an account with that email exists, you will receive an OTP shortly' };
   }
 
