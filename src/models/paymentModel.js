@@ -21,7 +21,7 @@ const paymentSchema = new mongoose.Schema({
   method: {
     type: String,
     enum: ['card', 'upi', 'wallet', 'cash'],
-    default: 'card'   // demo method
+    default: 'card'  
   },
 
   status: {
