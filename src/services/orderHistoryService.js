@@ -11,22 +11,22 @@ export const getOrderHistory = async (userId, filters = {}) => {
     limit = 10
   } = filters;
 
-  // Build query
+  
   let query = { user: userId };
 
-  // Status filter
+  
   if (status) {
     query.orderStatus = status;
   }
 
-  // Date range filter
+ 
   if (startDate || endDate) {
     query.createdAt = {};
     if (startDate) query.createdAt.$gte = new Date(startDate);
     if (endDate) query.createdAt.$lte = new Date(endDate);
   }
 
-  // Price range filter
+ 
   if (minPrice || maxPrice) {
     query.totalPrice = {
       $gte: Number(minPrice),
@@ -34,7 +34,7 @@ export const getOrderHistory = async (userId, filters = {}) => {
     };
   }
 
-  // Pagination
+
   const skip = (page - 1) * limit;
 
   const orders = await Order.find(query)

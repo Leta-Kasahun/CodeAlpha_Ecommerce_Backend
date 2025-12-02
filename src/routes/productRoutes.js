@@ -9,10 +9,10 @@ import {
 } from '../controllers/product/productControllers.js';
 
 const router = express.Router();
-// Public routes
+
 router.get('/', getProductsController);
 router.get('/:id', getProductController);
-// Protected routes
+
 router.post('/', protect, createProductController);
 router.put('/:id', protect, updateProductController);
 router.delete('/:id', protect, deleteProductController);

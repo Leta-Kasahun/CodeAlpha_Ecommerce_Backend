@@ -18,15 +18,15 @@ const userSchema = new mongoose.Schema({
   },
   isVerified: { type: Boolean, default: false },
 
-  // Sign-up OTP (existing)
+ 
   otp: { type: String },
   otpExpires: { type: Date },
 
-  // Password reset: minimal additions
-  otpReset: { type: String },               // stores 6-digit OTP for reset
-  otpResetExpires: { type: Date },          // expiry for reset OTP
-  passwordResetToken: { type: String },     // hashed (sha256) one-time reset token
-  passwordResetExpires: { type: Date }      // expiry for password reset token
+ 
+  otpReset: { type: String },              
+  otpResetExpires: { type: Date },         
+  passwordResetToken: { type: String },     
+  passwordResetExpires: { type: Date }     
 }, { timestamps: true });
 
 userSchema.pre('save', async function(next) {

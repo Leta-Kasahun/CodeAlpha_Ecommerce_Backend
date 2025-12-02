@@ -3,8 +3,6 @@ import Product from '../models/productModel.js';
 
 export const getSellerOrders = async (sellerId, filters = {}) => {
   const { status = '', page = 1, limit = 10 } = filters;
-
-  // Get seller's product IDs
   const sellerProducts = await Product.find({ owner: sellerId }).distinct('_id');
   
   if (sellerProducts.length === 0) {
@@ -16,8 +14,6 @@ export const getSellerOrders = async (sellerId, filters = {}) => {
   if (status) query.orderStatus = status;
 
   const skip = (page - 1) * limit;
-
-  // Get ALL orders that contain seller's products
   const orders = await Order.find(query)
     .populate('user', 'name email')
     .populate({
@@ -27,10 +23,8 @@ export const getSellerOrders = async (sellerId, filters = {}) => {
     .sort({ createdAt: -1 })
     .skip(skip)
     .limit(Number(limit));
-
-  // FIX: Don't filter out orders, just show seller's items within them
   const sellerOrders = orders.map(order => {
-    // Only show items that belong to this seller
+  
     const sellerItems = order.orderItems.filter(item => 
       item.product && sellerProducts.includes(item.product._id.toString())
     );
@@ -39,7 +33,7 @@ export const getSellerOrders = async (sellerId, filters = {}) => {
       total + (item.price * item.qty), 0
     );
 
-    // Return the order with only seller's items
+   
     return {
       ...order.toObject(),
       orderItems: sellerItems,
@@ -60,8 +54,7 @@ export const getSellerOrders = async (sellerId, filters = {}) => {
 
 export const updateSellerOrderStatus = async (orderId, sellerId, status) => {
   const sellerProducts = await Product.find({ owner: sellerId }).distinct('_id');
-  
-  // Check if order contains seller's products
+
   const order = await Order.findOne({
     _id: orderId,
     'orderItems.product': { $in: sellerProducts }

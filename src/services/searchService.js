@@ -13,10 +13,10 @@ export const searchProducts = async (filters = {}) => {
     limit = 10
   } = filters;
 
-  // Build search query - case insensitive
+ 
   let query = {};
 
-  // Text search (case insensitive)
+ 
   if (q) {
     query.$or = [
       { name: { $regex: q, $options: 'i' } }, // 'i' for case insensitive
@@ -25,15 +25,15 @@ export const searchProducts = async (filters = {}) => {
     ];
   }
 
-  // Category filter (case insensitive)
+ 
   if (category) {
     query.category = { $regex: category, $options: 'i' };
   }
 
-  // Price range
+  
   query.price = { $gte: Number(minPrice), $lte: Number(maxPrice) };
 
-  // Sort options
+
   const sortOptions = {};
   const sortField = sortBy === 'rating' ? 'rating' : 
                    sortBy === 'price' ? 'price' : 
@@ -41,7 +41,7 @@ export const searchProducts = async (filters = {}) => {
   
   sortOptions[sortField] = sortOrder === 'asc' ? 1 : -1;
 
-  // Pagination
+ 
   const skip = (page - 1) * limit;
 
   const products = await Product.find(query)
@@ -63,7 +63,7 @@ export const searchProducts = async (filters = {}) => {
   };
 };
 
-// Search suggestions (case insensitive)
+
 export const getSearchSuggestions = async (query) => {
   if (!query || query.trim().length < 2) {
     return [];
@@ -71,7 +71,7 @@ export const getSearchSuggestions = async (query) => {
 
   const searchTerm = query.trim();
 
-  // Product name suggestions
+  
   const productSuggestions = await Product.find({
     name: { $regex: searchTerm, $options: 'i' }
   })
@@ -79,14 +79,14 @@ export const getSearchSuggestions = async (query) => {
   .limit(5)
   .sort({ createdAt: -1 });
 
-  // Category suggestions
+ 
   const categorySuggestions = await Product.distinct('category', {
     category: { $regex: searchTerm, $options: 'i' }
   });
 
   const suggestions = [];
 
-  // Add product suggestions
+  
   productSuggestions.forEach(product => {
     suggestions.push({
       type: 'product',
@@ -99,7 +99,7 @@ export const getSearchSuggestions = async (query) => {
     });
   });
 
-  // Add category suggestions
+  
   categorySuggestions.slice(0, 3).forEach(category => {
     suggestions.push({
       type: 'category',
@@ -112,7 +112,7 @@ export const getSearchSuggestions = async (query) => {
   return suggestions;
 };
 
-// Get popular searches/categories
+
 export const getPopularSearches = async () => {
   const popularCategories = await Product.aggregate([
     { $group: { _id: '$category', count: { $sum: 1 } } },

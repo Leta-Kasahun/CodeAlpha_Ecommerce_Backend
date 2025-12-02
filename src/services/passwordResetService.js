@@ -22,11 +22,11 @@ export async function sendResetOTP(email) {
   await user.save();
 
   try {
-    // sendOTPEmail(email, otp, name, subject)
+ 
     await sendOTPEmail(user.email, otp, user.name, 'CA‑Ecommerce Password Reset Code');
   } catch (err) {
     console.error('passwordResetService.sendResetOTP: sendOTPEmail failed:', err && err.message ? err.message : err);
-    // cleanup if send fails
+    
     user.otpReset = undefined;
     user.otpResetExpires = undefined;
     await user.save().catch(() => {});
@@ -77,10 +77,10 @@ export async function resetPassword(email, resetToken, newPassword, confirmPassw
 
   if (!user) return { success: false, status: 400, message: 'Invalid or expired reset token' };
 
-  user.password = newPassword; // will be hashed by pre-save
+  user.password = newPassword; 
   user.passwordResetToken = undefined;
   user.passwordResetExpires = undefined;
-  user.isVerified = true; // optional
+  user.isVerified = true; 
   await user.save();
 
   return { success: true, message: 'Password has been reset successfully' };

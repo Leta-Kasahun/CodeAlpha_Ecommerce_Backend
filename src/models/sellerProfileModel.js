@@ -5,18 +5,17 @@ const sellerProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true,
-    unique: true // one-to-one with User
+    unique: true 
   },
 
   shopName: { type: String, required: true, trim: true },
 
-  // Demo payout info (for demo payments only)
-  demoPayoutNumber: { type: String }, // optional, no real banking
-  bankName: { type: String },          // optional
+  demoPayoutNumber: { type: String },
+  bankName: { type: String },          
 
-  phoneForOrders: { type: String },   // optional for contact
+  phoneForOrders: { type: String },  
 
-  shopAddress: {                      // simple, clean address
+  shopAddress: {                     
     city: String,
     postalCode: String,
     country: String

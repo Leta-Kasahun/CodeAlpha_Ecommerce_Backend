@@ -29,7 +29,7 @@ const createPaymentController = async (req, res) => {
 
 const processPaymentController = async (req, res) => {
   try {
-    const { status } = req.body; // 'success' or 'failed'
+    const { status } = req.body; 
     const { paymentId } = req.params;
 
     const payment = await processPayment(paymentId, status);
@@ -47,7 +47,7 @@ const processPaymentController = async (req, res) => {
   }
 };
 
-// Get payment by order
+
 const getPaymentByOrderController = async (req, res) => {
   try {
     const payment = await getPaymentByOrder(req.params.orderId);

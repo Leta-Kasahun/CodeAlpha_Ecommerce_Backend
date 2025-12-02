@@ -1,5 +1,4 @@
-// orderService: createOrder creates an Order from the user's cart and returns it.
-// Do NOT clear the user's cart here; cart clearing will be done only after payment success.
+
 import Order from '../models/orderModel.js';
 import Cart from '../models/cartModel.js';
 

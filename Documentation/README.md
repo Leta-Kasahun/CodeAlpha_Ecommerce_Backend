@@ -10,36 +10,7 @@ Base URL: https://ca-ecommerce-api.onrender.com
 
 All API paths listed below should be used together with this base URL.
 
-📘 Table of Contents
-
-🔧 Project Overview
-
-🛠️ Tech Stack
-
-🧪 Testing Workflow (All Endpoints)
-
-👤 Authentication
-
-👤 Profile Management
-
-📦 Product Management
-
-🔍 Search & Discovery
-
-🛒 Shopping Cart
-
-📦 Orders
-
-💳 Payments
-
-⭐ Reviews
-
-🏪 Seller Upgrade
-
-📌 Summary
-
-🔧 1. Project Overview
-
+---
 This API powers a full e-commerce platform with:
 
 User registration, login, OTP verification
@@ -61,7 +32,7 @@ Review & rating system
 Seller account upgrade for users
 
 Front-end teams can use this documentation to test every flow easily without missing any endpoint.
-
+----
 🛠️ 2. Tech Stack
 
 Node.js
@@ -332,22 +303,3 @@ Body:
   "phoneForOrders": "+251922334455"
 }
 
-✅ 14. Complete E-Commerce Platform Features
-
-✔️ User authentication & profile
-
-✔️ Product catalog
-
-✔️ Search & suggestions
-
-✔️ Sorting & filtering
-
-✔️ Shopping cart
-
-✔️ Orders + history
-
-✔️ Payments
-
-✔️ Reviews
-
-✔️ Seller marketplace

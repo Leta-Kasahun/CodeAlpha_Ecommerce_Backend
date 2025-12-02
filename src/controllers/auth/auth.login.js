@@ -4,9 +4,6 @@ import User from '../../models/userModel.js';
 import generateToken from '../../utils/generateToken.js';
 import sendOTPEmail from '../../utils/emailService.js';
 
-/**
- * POST /api/auth/login
- */
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -43,12 +40,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-/**
- * POST /api/auth/forgot-password
- * Body: { email }
- * Generates a one-time 6-digit OTP (otpReset) and emails it to the user.
- * Returns a generic success response in all cases to avoid leaking account existence.
- */
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -58,7 +49,7 @@ const forgotPassword = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      // Don't reveal whether the email exists
+
       return res.status(200).json({
         success: true,
         message: 'If an account with that email exists, you will receive an OTP shortly'
@@ -91,12 +82,7 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-/**
- * POST /api/auth/verify-reset-otp
- * Body: { email, otp }
- * Verifies the OTP and, if valid, issues a one-time resetToken (raw) returned to client.
- * The server stores only the SHA256 hash of the token with a short expiry.
- */
+
 const verifyResetOTP = async (req, res) => {
   try {
     const { email, otp } = req.body;
@@ -114,7 +100,7 @@ const verifyResetOTP = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid or expired OTP' });
     }
 
-    // generate one-time reset token, store its hash
+   
     const rawResetToken = crypto.randomBytes(32).toString('hex');
     const hashed = crypto.createHash('sha256').update(rawResetToken).digest('hex');
 
@@ -124,7 +110,7 @@ const verifyResetOTP = async (req, res) => {
     user.otpResetExpires = undefined;
     await user.save();
 
-    // Return raw token to client (only once). Client uses it to call /reset-password.
+    
     return res.status(200).json({
       success: true,
       message: 'OTP verified',
@@ -136,11 +122,6 @@ const verifyResetOTP = async (req, res) => {
   }
 };
 
-/**
- * POST /api/auth/reset-password
- * Body: { email, resetToken, newPassword, confirmPassword }
- * Verifies resetToken (by comparing hashes), updates the password, and clears reset fields.
- */
 const resetPassword = async (req, res) => {
   try {
     const { email, resetToken, newPassword, confirmPassword } = req.body;
@@ -167,10 +148,10 @@ const resetPassword = async (req, res) => {
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(newPassword, salt);
 
-    // clear reset fields
+   
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
-    user.isVerified = true; // optional: mark verified if desired
+    user.isVerified = true; 
     await user.save();
 
     return res.status(200).json({ success: true, message: 'Password has been reset successfully' });

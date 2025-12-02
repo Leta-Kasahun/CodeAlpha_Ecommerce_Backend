@@ -18,7 +18,7 @@ export const sortProducts = async (sortBy = 'createdAt', sortOrder = 'desc', pag
       sortOptions.createdAt = sortOrder === 'asc' ? 1 : -1;
   }
 
-  // Pagination
+
   const skip = (page - 1) * limit;
 
   const products = await Product.find({ isAvailable: true })

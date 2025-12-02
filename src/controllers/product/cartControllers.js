@@ -6,7 +6,7 @@ import {
   clearCart
 } from '../../services/cartService.js';
 
-// Get user cart
+
 const getCartController = async (req, res) => {
   try {
     const cart = await getCartByUser(req.user._id);
@@ -23,7 +23,7 @@ const getCartController = async (req, res) => {
   }
 };
 
-// Add item to cart
+
 const addToCartController = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
@@ -43,7 +43,7 @@ const addToCartController = async (req, res) => {
   }
 };
 
-// Update cart item quantity
+
 const updateCartItemController = async (req, res) => {
   try {
     const { productId } = req.params;
@@ -71,7 +71,7 @@ const updateCartItemController = async (req, res) => {
   }
 };
 
-// Remove item from cart
+
 const removeFromCartController = async (req, res) => {
   try {
     const { productId } = req.params;

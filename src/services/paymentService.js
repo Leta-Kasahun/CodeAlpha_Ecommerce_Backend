@@ -4,10 +4,10 @@ import Order from '../models/orderModel.js';
 import Cart from '../models/cartModel.js';
 
 export const createPayment = async (paymentData) => {
-  // Create payment record; do NOT mark order paid here.
+  
   const payment = await Payment.create(paymentData);
 
-  // Leave Order.paymentStatus as-is (pending) until processPayment confirms success.
+  
   return await payment.populate('user', 'name email');
 };
 
@@ -24,13 +24,13 @@ export const processPayment = async (paymentId, status) => {
   if (!payment) return null;
 
   if (status === 'success') {
-    // Mark the order as paid
+    
     await Order.findByIdAndUpdate(
       payment.order,
       { paymentStatus: 'paid' }
     );
 
-    // Clear the user's cart only after successful payment
+    
     const userId = payment.user && payment.user._id ? payment.user._id : payment.user;
     if (userId) {
       await Cart.findOneAndUpdate(
@@ -39,7 +39,7 @@ export const processPayment = async (paymentId, status) => {
       );
     }
   } else {
-    // On failure, do not clear cart; you may add retry logic or notify user
+   
   }
 
   return payment;
