@@ -215,7 +215,6 @@ CodeAlpha_Ecommerce_Backend/
 - `PUT /api/owners/profile` - Update seller profile
 
 ---
-
 ## 🔧 Installation & Setup
 
 1. **Clone the repository**
